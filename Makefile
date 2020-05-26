@@ -28,7 +28,7 @@ build/decloj: target/uberjar/decloj-$(VERSION)-standalone.jar
 		-H:+ReportExceptionStackTraces \
 		-J-Dclojure.spec.skip-macros=true \
 		-J-Dclojure.compiler.direct-linking=true \
-		-H:ConfigurationFileDirectories=config-dir/ \
+		-H:ConfigurationFileDirectories=graal-configs/ \
 		--initialize-at-build-time \
 		-H:Log=registerResource: \
 		-H:EnableURLProtocols=http,https \
