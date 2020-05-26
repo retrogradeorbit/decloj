@@ -1,0 +1,822 @@
+[
+    {
+        "name": "org.bytedeco.javacpp.presets.javacpp",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.javacpp.Loader",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.global.Qt5Core",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.javacpp.Pointer",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true,
+        "fields": [
+            { "name" : "address", "allowWrite" : true },
+            { "name" : "position", "allowWrite" : true },
+            { "name" : "limit", "allowWrite" : true },
+            { "name" : "capacity", "allowWrite" : true },
+            { "name" : "deallocator", "allowWrite" : true }
+        ]
+    },
+    {
+        "name": "org.bytedeco.javacpp.BytePointer",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.javacpp.ShortPointer",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.javacpp.IntPointer",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.javacpp.LongPointer",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.javacpp.FloatPointer",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.javacpp.DoublePointer",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.javacpp.CharPointer",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.javacpp.BooleanPointer",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.javacpp.PointerPointer",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.javacpp.BoolPointer",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.javacpp.CLongPointer",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.javacpp.SizeTPointer",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "java.lang.UnsatisfiedLinkError",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "java.lang.String",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.javacpp.Pointer$NativeDeallocator",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true,
+        "fields": [
+            { "name" : "ownerAddress", "allowWrite" : true }
+        ]
+    },
+    {
+        "name": "java.nio.Buffer",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true,
+        "fields": [
+            { "name" : "ownerAddress", "allowWrite" : true },
+            { "name" : "position", "allowWrite" : true },
+            { "name" : "limit", "allowWrite" : true },
+            { "name" : "capacity", "allowWrite" : true }
+
+        ]
+    },
+    {
+        "name": "java.lang.NullPointerException",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {
+        "name": "org.bytedeco.qt.Qt5Core.QAbstractEventDispatcher$TimerInfo",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+
+    {
+        "name": "java.lang.RuntimeException",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+
+    {
+        "name": "org.bytedeco.qt.Qt5Core.QAbstractEventDispatcher",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+
+    {
+        "name": "org.bytedeco.qt.Qt5Core.QByteArray",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+
+    {
+        "name": "org.bytedeco.qt.Qt5Core.QObject",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+
+    {
+        "name": "org.bytedeco.qt.Qt5Core.QChildEvent",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+
+    {
+        "name": "org.bytedeco.qt.Qt5Core.QString",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+
+    {
+        "name": "org.bytedeco.qt.Qt5Core.QCoreApplication",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+
+    {
+        "name": "org.bytedeco.qt.Qt5Core.QDeferredDeleteEvent",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+
+    {
+        "name": "org.bytedeco.qt.Qt5Core.QDynamicPropertyChangeEvent",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+
+    {
+        "name": "org.bytedeco.qt.Qt5Core.QEvent",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+
+    {
+        "name": "org.bytedeco.qt.Qt5Core.QEvent$Type",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+
+    {
+        "name": "org.bytedeco.qt.Qt5Core.QEventLoop",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+
+    {
+        "name": "org.bytedeco.qt.Qt5Core.QMessageLogContext",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+
+    {
+        "name": "org.bytedeco.qt.Qt5Core.QMessageLogger",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+
+    {
+        "name": "org.bytedeco.qt.Qt5Core.QSize",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+
+    {
+        "name": "org.bytedeco.qt.Qt5Core.QTimerEvent",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+
+    {
+        "name": "org.bytedeco.qt.Qt5Core.QVariant",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+
+    {
+        "name": "org.bytedeco.qt.Qt5Core.QtMessageHandler",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+
+
+
+
+
+    {
+        "name": "org.bytedeco.qt.Qt5Gui.QIcon",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Gui.QCloseEvent",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Widgets.QAbstractButton",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Widgets.QWidget",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Widgets.QAbstractScrollArea",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Widgets.QAbstractSpinBox",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Gui.QFont",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Widgets.QMenu",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Widgets.QAction",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Widgets.QStyle",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Widgets.QApplication",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.helper.Qt5Widgets$QLayoutItem",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Widgets.QBoxLayout",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Widgets.QCheckBox",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Widgets.QLineEdit",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Widgets.QComboBox",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Widgets.QDialog",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Widgets.QFrame",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Widgets.QGridLayout",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Widgets.QGroupBox",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Widgets.QHBoxLayout",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Widgets.QLabel",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Widgets.QLayout",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Widgets.QPushButton",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Widgets.QMessageBox",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Widgets.QSizePolicy$ControlType",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Widgets.QSizePolicy",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Widgets.QAbstractSpinBox$StepType",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Widgets.QSpinBox",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Widgets.QSystemTrayIcon",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Widgets.QTextEdit$ExtraSelection",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Widgets.QTextEdit",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Widgets.QToolButton",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Widgets.QVBoxLayout",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.helper.Qt5Gui$QPaintDevice",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.helper.Qt5Widgets$MessageClickedCallback",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Widgets.QSystemTrayIcon$ActivationReason",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.helper.Qt5Widgets$ActivatedCallback",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.helper.Qt5Widgets$CurrentIndexChangedCallback1",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.helper.Qt5Widgets$TriggeredCallback",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.helper.Qt5Widgets$ToggledCallback",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.helper.Qt5Widgets$ClickedCallback",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+
+
+
+    {
+        "name": "org.bytedeco.qt.Qt5Gui.QGuiApplication",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "org.bytedeco.qt.Qt5Gui.QTextCodec",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    }
+
+
+
+
+
+
+
+
+    ]
