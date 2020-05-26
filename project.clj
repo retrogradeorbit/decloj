@@ -6,5 +6,12 @@
   :dependencies [[org.clojure/clojure "1.10.2-alpha1"]
                  [org.bytedeco/qt-platform "5.14.2-1.5.3"]]
   :main ^:skip-aot decloj.core
+  :java-source-paths ["src/java"]
+  :jvm-opts ["-Djava.library.path=./"
+             "-Dorg.bytedeco.javacpp.logger.debug=true"]
   :target-path "target/%s"
-  :profiles {:uberjar {:aot :all}})
+  :profiles {:uberjar {:aot :all
+                       :jvm-opts ["-Dclojure.compiler.direct-linking=true"
+                                  ;;"-Dorg.bytedeco.javacpp.logger.debug=true"
+                                  "-Djava.library.path=./"]
+                       }})
