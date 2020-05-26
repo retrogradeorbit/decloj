@@ -23,12 +23,6 @@
   [& args]
   (init!)
 
-  (println ">>> loadLibrary")
-  (println ">>>>" (-> (.getClassLoader org.bytedeco.javacpp.Loader)
-                      (.loadClass "org.bytedeco.javacpp.Loader")))
-  (println ">>>>" (-> (.getClassLoader org.bytedeco.javacpp.Pointer)
-                      (.loadClass "org.bytedeco.javacpp.Pointer")))
-
   (doall
    (for [name ["jnijavacpp" "Qt5Core" "jniQt5Core" "jniQt5Widgets" "Qt5Gui"
                "Qt5DBus" "Qt5XcbQpa" "Qt5Widgets" "Qt5PrintSupport"
