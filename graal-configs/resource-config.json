@@ -2,21 +2,21 @@
   "resources" : [ {
     "pattern" : "org/bytedeco/javacpp/linux-x86_64/libjnijavacpp\\.so$"
   }, {
-    "pattern" : "org/bytedeco/qt/linux-x86_64/libQt5Core\\.so$"
+    "pattern" : "org/bytedeco/qt/linux-x86_64/libQt5DBus\\.so\\.5$"
+  }, {
+    "pattern" : "org/bytedeco/qt/linux-x86_64/libQt5Gui\\.so\\.5$"
+  }, {
+    "pattern" : "org/bytedeco/qt/linux-x86_64/libQt5XcbQpa\\.so\\.5$"
+  }, {
+    "pattern" : "org/bytedeco/qt/linux-x86_64/libQt5Widgets\\.so\\.5$"
+  }, {
+    "pattern" : "org/bytedeco/qt/linux-x86_64/libQt5PrintSupport\\.so\\.5$"
+  }, {
+    "pattern" : "org/bytedeco/qt/linux-x86_64/libQt5Core\\.so\\.5$"
   }, {
     "pattern" : "org/bytedeco/qt/linux-x86_64/libjniQt5Core\\.so$"
   }, {
     "pattern" : "org/bytedeco/qt/linux-x86_64/libjniQt5Widgets\\.so$"
-  }, {
-    "pattern" : "org/bytedeco/qt/linux-x86_64/libQt5Gui\\.so$"
-  }, {
-    "pattern" : "org/bytedeco/qt/linux-x86_64/libQt5DBus\\.so$"
-  }, {
-    "pattern" : "org/bytedeco/qt/linux-x86_64/libQt5XcbQpa\\.so$"
-  }, {
-    "pattern" : "org/bytedeco/qt/linux-x86_64/libQt5Widgets\\.so$"
-  }, {
-    "pattern" : "org/bytedeco/qt/linux-x86_64/libQt5PrintSupport\\.so$"
   }, {
     "pattern" : "org/bytedeco/qt/linux-x86_64/libqxdgdesktopportal\\.so$"
   }, {

@@ -68,39 +68,43 @@
 
 
 (def resource-libs
-  {"qt-5.14.2-1.5.3-linux-x86_64.jar"
+  {"javacpp-1.5.3-linux-x86_64.jar"
    {:path "org/bytedeco/javacpp/"
     :names ["jnijavacpp"]}
-   "javacpp-1.5.3-linux-x86_64.jar"
+
+   ;; https://github.com/bytedeco/javacpp-presets/blob/master/qt/src/main/java/org/bytedeco/qt/presets/Qt5Gui.java#L47-L52
+   ;; TODO: how to read straight from properties
+   "qt-5.14.2-1.5.3-linux-x86_64.jar"
    {:path "org/bytedeco/qt/"
-    :names ["Qt5Core" "jniQt5Core" "jniQt5Widgets" "Qt5Gui"
-     "Qt5DBus" "Qt5XcbQpa" "Qt5Widgets" "Qt5PrintSupport"
+    :names [
+            "Qt5DBus@.5", "Qt5Gui@.5", "Qt5XcbQpa@.5", "Qt5Widgets@.5", "Qt5PrintSupport@.5",
+            "Qt5Core@.5" "jniQt5Core" "jniQt5Widgets"
 
-     ;; macos
-     ;;"qmacstyle" "qcocoa" "cocoaprintersupport"
+            ;; macos
+            ;;"qmacstyle" "qcocoa" "cocoaprintersupport"
 
-     ;; linux
-     ;;"qgtk3"
+            ;; linux
+            ;;"qgtk3"
 
-     ;; all platforms?
-     "qxdgdesktopportal"
-     "qxcb"
-     "qlinuxfb"
-     "qminimalegl"
-     "qminimal"
-     "qoffscreen"
-     "composeplatforminputcontextplugin"
-     "ibusplatforminputcontextplugin"
-     "qxcb-egl-integration"
-     "qxcb-glx-integration"
-     "qgif"
-     "qico"
-     "qjpeg"
-     "qevdevkeyboardplugin"
-     "qevdevmouseplugin"
-     "qevdevtabletplugin"
-     "qevdevtouchplugin"
-     "jniQt5Gui"]}})
+            ;; all platforms?
+            "qxdgdesktopportal"
+            "qxcb"
+            "qlinuxfb"
+            "qminimalegl"
+            "qminimal"
+            "qoffscreen"
+            "composeplatforminputcontextplugin"
+            "ibusplatforminputcontextplugin"
+            "qxcb-egl-integration"
+            "qxcb-glx-integration"
+            "qgif"
+            "qico"
+            "qjpeg"
+            "qevdevkeyboardplugin"
+            "qevdevmouseplugin"
+            "qevdevtabletplugin"
+            "qevdevtouchplugin"
+            "jniQt5Gui"]}})
 
 (defn make-resources-config-hashmap []
   {"resources"
@@ -108,8 +112,12 @@
         (map second)
         (map (fn [{:keys [path names]}]
                (for [n names]
-                 (str path property-platform "/"
-                      property-library-prefix n property-library-suffix))))
+                 (let [[lib suffix] (string/split n #"@")]
+                   (str path property-platform "/"
+                        property-library-prefix
+                        lib
+                        property-library-suffix
+                        suffix)))))
         (flatten)
         (map (fn [fname]
                {"pattern" (str (string/replace fname #"\." "\\\\.") "$")}))
@@ -139,50 +147,55 @@
   (println "resources")
   (println "=========")
   (doseq [res-file (->> resource-libs
-                      (map second)
-                      (map (fn [{:keys [names]}]
-                             (for [n names]
-                               (str property-library-prefix n property-library-suffix))))
-                      (flatten))]
+                        (map second)
+                        (map (fn [{:keys [path names]}]
+                               (for [n names]
+                                 (let [[lib suffix] (string/split n #"@")]
+                                   (str path property-platform "/"
+                                        property-library-prefix
+                                        lib
+                                        property-library-suffix
+                                        suffix)))))
+                        (flatten))]
     (prn res-file (io/resource res-file)))
 
   (println)
 
   (doall
-      (for [name ["jnijavacpp" "Qt5Core" "jniQt5Core" "jniQt5Widgets" "Qt5Gui"
-                  "Qt5DBus" "Qt5XcbQpa" "Qt5Widgets" "Qt5PrintSupport"
+   (for [name ["jnijavacpp" "Qt5Core" "jniQt5Core" "jniQt5Widgets" "Qt5Gui"
+               "Qt5DBus" "Qt5XcbQpa" "Qt5Widgets" "Qt5PrintSupport"
 
-                  ;; macos
-                  ;;"qmacstyle" "qcocoa" "cocoaprintersupport"
+               ;; macos
+               ;;"qmacstyle" "qcocoa" "cocoaprintersupport"
 
-                  ;; linux
-                  ;;"qgtk3"
+               ;; linux
+               ;;"qgtk3"
 
-                  ;; all platforms?
-                  "qxdgdesktopportal"
-                  "qxcb"
-                  "qlinuxfb"
-                  "qminimalegl"
-                  "qminimal"
-                  "qoffscreen"
-                  "composeplatforminputcontextplugin"
-                  "ibusplatforminputcontextplugin"
-                  "qxcb-egl-integration"
-                  "qxcb-glx-integration"
-                  "qgif"
-                  "qico"
-                  "qjpeg"
-                  "qevdevkeyboardplugin"
-                  "qevdevmouseplugin"
-                  "qevdevtabletplugin"
-                  "qevdevtouchplugin"
-                  "jniQt5Gui"
+               ;; all platforms?
+               "qxdgdesktopportal"
+               "qxcb"
+               "qlinuxfb"
+               "qminimalegl"
+               "qminimal"
+               "qoffscreen"
+               "composeplatforminputcontextplugin"
+               "ibusplatforminputcontextplugin"
+               "qxcb-egl-integration"
+               "qxcb-glx-integration"
+               "qgif"
+               "qico"
+               "qjpeg"
+               "qevdevkeyboardplugin"
+               "qevdevmouseplugin"
+               "qevdevtabletplugin"
+               "qevdevtouchplugin"
+               "jniQt5Gui"
 
 
-                  ]]
-        (do
-          (println "loading:" name)
-          (clojure.lang.RT/loadLibrary name))))
+               ]]
+     (do
+       (println "loading:" name)
+       (clojure.lang.RT/loadLibrary name))))
 
   (println ">>> Setup")
   (let [lib-path (Loader/load Qt5Core)
