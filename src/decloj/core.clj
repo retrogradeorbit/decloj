@@ -1,5 +1,9 @@
 (ns decloj.core
-  (:require [clojure.java.io :as io])
+  (:require [clojure.java.io :as io]
+            [clojure.java.classpath]
+            [clojure.string :as string]
+            [cheshire.core :as cheshire]
+            )
   (:import [org.bytedeco.javacpp PointerPointer IntPointer]
            [org.bytedeco.javacpp Loader]
            [org.bytedeco.qt.global Qt5Core]
@@ -8,6 +12,51 @@
   (:gen-class))
 
 (set! *warn-on-reflection* true)
+
+(defn get-cache-dir []
+  (->> [(System/getProperty "org.bytedeco.javacpp.cachedir")
+        (System/getProperty "org.bytedeco.javacpp.cacheDir")
+        (str (System/getProperty "user.home") "/.javacpp/cache/")
+        (str (System/getProperty "org.bytedeco.javacpp.cachedir")
+             "/.javacpp-"
+             (System/getProperty "user.name")
+             "/cache/")]
+       (filter identity)
+       (map io/file)
+       (filter (fn [^java.io.File f]
+                 (try (and (or (.exists f) (.mkdirs f))
+                           (.canRead f)
+                           (.canWrite f)
+                           (.canExecute f))
+                      (catch SecurityException _))))
+       first)
+
+  )
+
+#_ (get-cache-dir)
+
+(defn get-property [property]
+  (-> (Loader/loadProperties)
+      (.getProperty property)))
+
+(def property-platform (get-property "platform"))
+(def property-library-prefix (get-property "platform.library.prefix"))
+(def property-library-suffix (get-property "platform.library.suffix"))
+
+(defn get-jar-name [basename]
+  (str basename "-" property-platform ".jar"))
+
+#_ (get-jar-name "javacpp-1.5.3")
+
+#_
+
+(io/resource "javacpp-platform-1.5.3.jar")
+
+#_
+(clojure.java.classpath/filenames-in-jar
+ (first (clojure.java.classpath/classpath-jarfiles)))
+
+#_ (map clojure.java.classpath/jar-file? (clojure.java.classpath/classpath))
 
 (defn init! []
   (let [native-image?
@@ -18,46 +67,122 @@
       (System/setProperty "java.library.path" "./"))))
 
 
+(def resource-libs
+  {"qt-5.14.2-1.5.3-linux-x86_64.jar"
+   {:path "org/bytedeco/javacpp/"
+    :names ["jnijavacpp"]}
+   "javacpp-1.5.3-linux-x86_64.jar"
+   {:path "org/bytedeco/qt/"
+    :names ["Qt5Core" "jniQt5Core" "jniQt5Widgets" "Qt5Gui"
+     "Qt5DBus" "Qt5XcbQpa" "Qt5Widgets" "Qt5PrintSupport"
+
+     ;; macos
+     ;;"qmacstyle" "qcocoa" "cocoaprintersupport"
+
+     ;; linux
+     ;;"qgtk3"
+
+     ;; all platforms?
+     "qxdgdesktopportal"
+     "qxcb"
+     "qlinuxfb"
+     "qminimalegl"
+     "qminimal"
+     "qoffscreen"
+     "composeplatforminputcontextplugin"
+     "ibusplatforminputcontextplugin"
+     "qxcb-egl-integration"
+     "qxcb-glx-integration"
+     "qgif"
+     "qico"
+     "qjpeg"
+     "qevdevkeyboardplugin"
+     "qevdevmouseplugin"
+     "qevdevtabletplugin"
+     "qevdevtouchplugin"
+     "jniQt5Gui"]}})
+
+(defn make-resources-config-hashmap []
+  {"resources"
+   (->> resource-libs
+        (map second)
+        (map (fn [{:keys [path names]}]
+               (for [n names]
+                 (str path property-platform "/"
+                      property-library-prefix n property-library-suffix))))
+        (flatten)
+        (map (fn [fname]
+               {"pattern" (str (string/replace fname #"\." "\\\\.") "$")}))
+        (into []))
+   "bundles" []})
+
+(defn write-resources-config-hashmap [filename]
+  (spit filename
+        (cheshire/generate-string
+         (make-resources-config-hashmap)
+         {:pretty true})))
+
+#_ (write-resources-config-hashmap "graal-configs/resource-config.json")
+
+
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
   (init!)
 
+  (println "classpath")
+  (println "=========")
+  (doseq [f (clojure.java.classpath/classpath)]
+    (println (.getName ^java.io.File f)))
+  (println)
+
+  (println "resources")
+  (println "=========")
+  (doseq [res-file (->> resource-libs
+                      (map second)
+                      (map (fn [{:keys [names]}]
+                             (for [n names]
+                               (str property-library-prefix n property-library-suffix))))
+                      (flatten))]
+    (prn res-file (io/resource res-file)))
+
+  (println)
+
   (doall
-   (for [name ["jnijavacpp" "Qt5Core" "jniQt5Core" "jniQt5Widgets" "Qt5Gui"
-               "Qt5DBus" "Qt5XcbQpa" "Qt5Widgets" "Qt5PrintSupport"
+      (for [name ["jnijavacpp" "Qt5Core" "jniQt5Core" "jniQt5Widgets" "Qt5Gui"
+                  "Qt5DBus" "Qt5XcbQpa" "Qt5Widgets" "Qt5PrintSupport"
 
-               ;; macos
-               ;;"qmacstyle" "qcocoa" "cocoaprintersupport"
+                  ;; macos
+                  ;;"qmacstyle" "qcocoa" "cocoaprintersupport"
 
-               ;; linux
-               ;;"qgtk3"
+                  ;; linux
+                  ;;"qgtk3"
 
-               ;; all platforms?
-               "qxdgdesktopportal"
-               "qxcb"
-               "qlinuxfb"
-               "qminimalegl"
-               "qminimal"
-               "qoffscreen"
-               "composeplatforminputcontextplugin"
-               "ibusplatforminputcontextplugin"
-               "qxcb-egl-integration"
-               "qxcb-glx-integration"
-               "qgif"
-               "qico"
-               "qjpeg"
-               "qevdevkeyboardplugin"
-               "qevdevmouseplugin"
-               "qevdevtabletplugin"
-               "qevdevtouchplugin"
-               "jniQt5Gui"
+                  ;; all platforms?
+                  "qxdgdesktopportal"
+                  "qxcb"
+                  "qlinuxfb"
+                  "qminimalegl"
+                  "qminimal"
+                  "qoffscreen"
+                  "composeplatforminputcontextplugin"
+                  "ibusplatforminputcontextplugin"
+                  "qxcb-egl-integration"
+                  "qxcb-glx-integration"
+                  "qgif"
+                  "qico"
+                  "qjpeg"
+                  "qevdevkeyboardplugin"
+                  "qevdevmouseplugin"
+                  "qevdevtabletplugin"
+                  "qevdevtouchplugin"
+                  "jniQt5Gui"
 
 
-               ]]
-     (do
-       (println "loading:" name)
-       (clojure.lang.RT/loadLibrary name))))
+                  ]]
+        (do
+          (println "loading:" name)
+          (clojure.lang.RT/loadLibrary name))))
 
   (println ">>> Setup")
   (let [lib-path (Loader/load Qt5Core)
