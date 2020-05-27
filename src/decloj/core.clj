@@ -8,12 +8,16 @@
            [org.bytedeco.javacpp Loader]
            [org.bytedeco.qt.global Qt5Core]
            [org.bytedeco.qt.Qt5Widgets QApplication QTextEdit]
+           [java.nio.file Paths Files LinkOption]
+           [java.nio.file.attribute FileAttribute]
            )
   (:gen-class))
 
 (set! *warn-on-reflection* true)
 
-(defn get-cache-dir []
+(def config-dir ".decloj")
+
+#_(defn get-cache-dir []
   (->> [(System/getProperty "org.bytedeco.javacpp.cachedir")
         (System/getProperty "org.bytedeco.javacpp.cacheDir")
         (str (System/getProperty "user.home") "/.javacpp/cache/")
@@ -57,15 +61,6 @@
  (first (clojure.java.classpath/classpath-jarfiles)))
 
 #_ (map clojure.java.classpath/jar-file? (clojure.java.classpath/classpath))
-
-(defn init! []
-  (let [native-image?
-        (and (= "Substrate VM" (System/getProperty "java.vm.name"))
-             (= "runtime" (System/getProperty "org.graalvm.nativeimage.imagecode")))]
-    (when native-image?
-      (println "setting up native image")
-      (System/setProperty "java.library.path" "./"))))
-
 
 (def resource-libs
   {"javacpp-1.5.3-linux-x86_64.jar"
@@ -131,6 +126,119 @@
          {:pretty true})))
 
 #_ (write-resources-config-hashmap "graal-configs/resource-config.json")
+
+
+
+(defn path-split
+  "give a full path filename, return a tuple of
+  [path basename]
+
+  eg \"blog/posts/1/main.yml\" -> [\"blog/posts/1\" \"main.yml\"]
+  "
+  [filename]
+  (let [file (io/file filename)]
+    [(.getParent file) (.getName file)]))
+
+(defn path-join
+  "given multiple file path parts, join them all together with the
+  file separator"
+  [& parts]
+  (.getPath ^java.io.File (apply io/file parts)))
+
+(def empty-string-array
+  (make-array String 0))
+
+(def empty-file-attribute-array
+  (make-array FileAttribute 0))
+
+(def empty-link-options
+  (make-array LinkOption 0))
+
+(def no-follow-links
+  (into-array LinkOption [LinkOption/NOFOLLOW_LINKS]))
+
+(defn symlink [link target]
+  (let [link-path (Paths/get link empty-string-array)]
+    (when (Files/exists link-path no-follow-links)
+      ;; link path exists
+      (if (Files/isSymbolicLink link-path)
+        ;; and its a symlink
+        (Files/delete link-path)
+
+        ;; its something else
+        (throw (ex-info (str link " already exists and is not a symlink")
+                        {:path link}))))
+
+    (.toString
+     (Files/createSymbolicLink
+      link-path
+      (Paths/get target empty-string-array)
+      empty-file-attribute-array))))
+
+
+(defn setup
+  "Copy any of the bundled dynamic libs from resources to the
+  run time lib directory"
+  [libs-dir]
+  (doseq [{:keys [filename
+                  linkname
+                  resource-file]} (->> resource-libs
+                                  (map second)
+                                  (map (fn [{:keys [path names]}]
+                                         (for [n names]
+                                           (let [[lib suffix] (string/split n #"@")
+                                                 resource-file (str path property-platform "/"
+                                                                    property-library-prefix
+                                                                    lib
+                                                                    property-library-suffix
+                                                                    suffix)]
+                                             (if suffix
+                                               {:resource-file resource-file
+                                                :filename (str property-library-prefix
+                                                               lib
+                                                               property-library-suffix
+                                                               suffix)
+                                                :linkname (str property-library-prefix
+                                                               lib
+                                                               property-library-suffix)}
+                                               {:resource-file resource-file
+                                                :filename (str property-library-prefix
+                                                               lib
+                                                               property-library-suffix)})))))
+                                  (flatten))]
+    (when-let [file (io/resource resource-file)]
+      ;; write out the filename if needed
+      (let [[_ name] (path-split (.getFile file))
+            dest-path (path-join libs-dir name)
+            resource-size (with-open [out (java.io.ByteArrayOutputStream.)]
+                            (io/copy (io/input-stream file) out)
+                            (count (.toByteArray out)))]
+        ;; writing to a library while running its code can result in segfault
+        ;; only write if filesize is different or it doesnt exist
+        (when (or (not (.exists (io/file dest-path)))
+                  (not= (.length (io/file dest-path)) resource-size))
+          (io/copy (io/input-stream file) (io/file dest-path))))
+
+      ;; if a symlink is needed, make it
+      (when linkname
+        (symlink (path-join libs-dir linkname) filename)
+        )
+      )))
+
+
+(defn init! []
+  (let [native-image?
+        (and (= "Substrate VM" (System/getProperty "java.vm.name"))
+             (= "runtime" (System/getProperty "org.graalvm.nativeimage.imagecode")))
+        home-dir (System/getenv "HOME")
+        config-dir (path-join home-dir config-dir)
+        libs-dir (path-join config-dir "libs")]
+    (.mkdirs (io/as-file libs-dir))
+
+    (when native-image?
+      (setup libs-dir)
+      (System/setProperty "java.library.path" libs-dir))))
+
 
 
 (defn -main
