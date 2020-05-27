@@ -4,7 +4,9 @@
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
             :url "https://www.eclipse.org/legal/epl-2.0/"}
   :dependencies [[org.clojure/clojure "1.10.2-alpha1"]
-                 [org.bytedeco/qt-platform "5.14.2-1.5.3"]]
+                 [org.clojure/java.classpath "1.0.0"]
+                 [org.bytedeco/qt-platform "5.14.2-1.5.3"]
+                 [cheshire "5.10.0"]]
   :main ^:skip-aot decloj.core
   :java-source-paths ["src/java"]
   :jvm-opts ["-Djava.library.path=./"
