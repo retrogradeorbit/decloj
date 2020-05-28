@@ -17,8 +17,8 @@ jobs:
     strategy:
       matrix:
         include:
-          - os: ubuntu-latest
-            suffix: linux-amd64
+          # - os: ubuntu-latest
+          #   suffix: linux-amd64
           - os: macOS-latest
             suffix: macos-amd64
           # - os: windows-latest
