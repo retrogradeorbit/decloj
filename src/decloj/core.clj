@@ -95,6 +95,13 @@
 
 #_ (write-resources-config-hashmap "graal-configs/resource-config.json")
 
+(def library-load-list
+  (->> resource-libs
+       vals
+       (map :names)
+       flatten
+       (map #(first (string/split % #"@")))))
+
 (defn path-split
   "give a full path filename, return a tuple of
   [path basename]
@@ -209,71 +216,12 @@
   [& args]
   (init!)
 
-  (println "classpath")
-  (println "=========")
-  (doseq [f (clojure.java.classpath/classpath)]
-    (println (.getName ^java.io.File f)))
-  (println)
+  (doseq [name library-load-list]
+    (clojure.lang.RT/loadLibrary name))
 
-  (println "resources")
-  (println "=========")
-  (doseq [res-file (->> resource-libs
-                        (map second)
-                        (map (fn [{:keys [path names]}]
-                               (for [n names]
-                                 (let [[lib suffix] (string/split n #"@")]
-                                   (str path property-platform "/"
-                                        property-library-prefix
-                                        lib
-                                        property-library-suffix
-                                        suffix)))))
-                        (flatten))]
-    (prn res-file (io/resource res-file)))
-
-  (println)
-
-  (doall
-   (for [name ["jnijavacpp" "Qt5Core" "jniQt5Core" "jniQt5Widgets" "Qt5Gui"
-               "Qt5DBus" "Qt5XcbQpa" "Qt5Widgets" "Qt5PrintSupport"
-
-               ;; macos
-               ;;"qmacstyle" "qcocoa" "cocoaprintersupport"
-
-               ;; linux
-               ;;"qgtk3"
-
-               ;; all platforms?
-               "qxdgdesktopportal"
-               "qxcb"
-               "qlinuxfb"
-               "qminimalegl"
-               "qminimal"
-               "qoffscreen"
-               "composeplatforminputcontextplugin"
-               "ibusplatforminputcontextplugin"
-               "qxcb-egl-integration"
-               "qxcb-glx-integration"
-               "qgif"
-               "qico"
-               "qjpeg"
-               "qevdevkeyboardplugin"
-               "qevdevmouseplugin"
-               "qevdevtabletplugin"
-               "qevdevtouchplugin"
-               "jniQt5Gui"
-
-
-               ]]
-     (do
-       (println "loading:" name)
-       (clojure.lang.RT/loadLibrary name))))
-
-  (System/exit 0)
-  (println ">>> Setup")
   (let [home-dir (System/getenv "HOME")
         config-dir (path-join home-dir config-dir)
         libs-dir (path-join config-dir "libs")
-        _ (println "LIBS-DIR" libs-dir)
         app (QApplication.
              (IntPointer. (int-array [3]))
              (PointerPointer.
@@ -287,7 +235,6 @@
         ]
     (.show text-edit)
     (let [result (org.bytedeco.qt.Qt5Widgets.QApplication/exec)]
-      (println ">>> Exiting" result)
       (System/exit result)))
 
   )
