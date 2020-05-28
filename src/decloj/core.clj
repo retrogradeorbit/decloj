@@ -306,7 +306,12 @@
        (clojure.lang.RT/loadLibrary name))))
 
   (println ">>> Setup")
-  (let [lib-path (Loader/load Qt5Core)
+  (let [home-dir (System/getenv "HOME")
+        config-dir (path-join home-dir config-dir)
+        libs-dir (path-join config-dir "libs")
+        lib-path (Loader/load Qt5Core)
+        _ (println "LIBPATH" lib-path)
+        _ (println "LIBS-DIR" libs-dir)
         app (QApplication.
              (IntPointer. (int-array [3]))
              (PointerPointer.
@@ -314,7 +319,7 @@
                String
                ["gettingstarted"
                 "-platformpluginpath"
-                (-> lib-path io/file .getParent)])
+                libs-dir])
               ))
         text-edit (QTextEdit.)
         ]
