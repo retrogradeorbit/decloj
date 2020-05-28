@@ -1,0 +1,41 @@
+name: native_image
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - '*'
+
+env:
+  CLOJURE_CLI_VERSION: '1.10.2-alpha1'
+  GRAALVM_VERSION: '20.1.0.java11'
+  PROJECT: decloj
+
+jobs:
+  native-image:
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            suffix: linux-amd64
+          - os: macOS-latest
+            suffix: darwin-amd64
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: DeLaGuardo/setup-graalvm@2.0
+        with:
+          graalvm-version: ${{ env.GRAALVM_VERSION }}
+      - uses: DeLaGuardo/setup-clojure@2.0
+        with:
+          tools-deps: ${{ env.CLOJURE_CLI_VERSION }}
+      - name: Build native image
+        run: |
+          gu install native-image
+          make clean all
+      - name: Rename
+        run: mv ${{ env.PROJECT }} ${{ env.PROJECT }}.${{ matrix.suffix }}
+      - uses: actions/upload-artifact@master
+        with:
+          name: ${{ env.PROJECT }}.${{ matrix.suffix }}
+          path: ./${{ env.PROJECT }}.${{ matrix.suffix }}
