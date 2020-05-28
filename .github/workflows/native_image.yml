@@ -10,6 +10,7 @@ env:
   CLOJURE_CLI_VERSION: '1.10.2-alpha1'
   GRAALVM_VERSION: '20.1.0.java11'
   PROJECT: decloj
+  VERSION: 0.1.0-SNAPSHOT
 
 jobs:
   native-image:
@@ -38,10 +39,16 @@ jobs:
       - name: Build native image
         run: |
           gu install native-image
-          make clean all GRAALVM_HOME=$JAVA_HOME
-      - name: Rename
-        run: mv build/decloj decloj.${{ matrix.suffix }}
+          make clean package-${{ matrix.suffix }} GRAALVM_HOME=$JAVA_HOME
       - uses: actions/upload-artifact@master
         with:
-          name: decloj.${{ matrix.suffix }}
-          path: ./${{ matrix.suffix }}/decloj
+          name: decloj-${{env.VERSION}}-${{ matrix.suffix }}.jar
+          path: ./decloj-${{env.VERSION}}-${{ matrix.suffix }}.jar
+      - uses: actions/upload-artifact@master
+        with:
+          name: decloj-${{env.VERSION}}-${{ matrix.suffix }}.tgz
+          path: ./decloj-${{env.VERSION}}-${{ matrix.suffix }}.tgz
+      - uses: actions/upload-artifact@master
+        with:
+          name: decloj-${{env.VERSION}}-${{ matrix.suffix }}.zip
+          path: ./decloj-${{env.VERSION}}-${{ matrix.suffix }}.zip
