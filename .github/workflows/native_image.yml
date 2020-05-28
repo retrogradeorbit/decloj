@@ -39,9 +39,7 @@ jobs:
         run: |
           gu install native-image
           make clean all GRAALVM_HOME=$JAVA_HOME
-      - name: Rename
-        run: mv build/${{ env.PROJECT }} ${{ env.PROJECT }}.${{ matrix.suffix }}
       - uses: actions/upload-artifact@master
         with:
-          name: ${{ env.PROJECT }}.${{ matrix.suffix }}
-          path: ./${{ env.PROJECT }}.${{ matrix.suffix }}
+          name: ${{ matrix.suffix }}/decloj
+          path: ./build/decloj
