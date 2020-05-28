@@ -43,12 +43,12 @@ jobs:
       - uses: actions/upload-artifact@master
         with:
           name: decloj-${{env.VERSION}}-${{ matrix.suffix }}.jar
-          path: ./decloj-${{env.VERSION}}-${{ matrix.suffix }}.jar
+          path: ./build/decloj-${{env.VERSION}}-${{ matrix.suffix }}.jar
       - uses: actions/upload-artifact@master
         with:
           name: decloj-${{env.VERSION}}-${{ matrix.suffix }}.tgz
-          path: ./decloj-${{env.VERSION}}-${{ matrix.suffix }}.tgz
+          path: ./build/decloj-${{env.VERSION}}-${{ matrix.suffix }}.tgz
       - uses: actions/upload-artifact@master
         with:
           name: decloj-${{env.VERSION}}-${{ matrix.suffix }}.zip
-          path: ./decloj-${{env.VERSION}}-${{ matrix.suffix }}.zip
+          path: ./build/decloj-${{env.VERSION}}-${{ matrix.suffix }}.zip
