@@ -41,6 +41,9 @@ build/decloj: target/uberjar/decloj-$(VERSION)-standalone.jar
 run: all
 	build/decloj
 
+test-bin: all
+	build/decloj --load
+
 package-linux-amd64: all
 	-rm -rf build/linux-package
 	-mkdir -p build/linux-package
