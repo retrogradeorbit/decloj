@@ -37,6 +37,9 @@
 (defn get-jar-name [basename]
   (str basename "-" property-platform ".jar"))
 
+(def linux? (string/starts-with? property-platform "linux"))
+(def macos? (string/starts-with? property-platform "macos"))
+
 #_ (get-jar-name "javacpp-1.5.3")
 
 (def resource-libs
@@ -47,36 +50,61 @@
    ;; https://github.com/bytedeco/javacpp-presets/blob/master/qt/src/main/java/org/bytedeco/qt/presets/Qt5Gui.java#L47-L52
    ;; TODO: how to read straight from properties
    "qt-5.14.2-1.5.3-linux-x86_64.jar"
-   {:path "org/bytedeco/qt/"
-    :names [
-            "Qt5DBus@.5", "Qt5Gui@.5", "Qt5XcbQpa@.5", "Qt5Widgets@.5", "Qt5PrintSupport@.5",
-            "Qt5Core@.5" "jniQt5Core" "jniQt5Widgets"
+   (cond
+     linux?
+     {:path "org/bytedeco/qt/"
+      :names [
+              "Qt5DBus@.5", "Qt5Gui@.5", "Qt5XcbQpa@.5", "Qt5Widgets@.5", "Qt5PrintSupport@.5",
+              "Qt5Core@.5" "jniQt5Core" "jniQt5Widgets"
 
-            ;; macos
-            ;;"qmacstyle" "qcocoa" "cocoaprintersupport"
+              ;; macos
+              ;;"qmacstyle" "qcocoa" "cocoaprintersupport"
 
-            ;; linux
-            ;;"qgtk3"
+              ;; linux
+              ;;"qgtk3"
 
-            ;; all platforms?
-            "qxdgdesktopportal"
-            "qxcb"
-            "qlinuxfb"
-            "qminimalegl"
-            "qminimal"
-            "qoffscreen"
-            "composeplatforminputcontextplugin"
-            "ibusplatforminputcontextplugin"
-            "qxcb-egl-integration"
-            "qxcb-glx-integration"
-            "qgif"
-            "qico"
-            "qjpeg"
-            "qevdevkeyboardplugin"
-            "qevdevmouseplugin"
-            "qevdevtabletplugin"
-            "qevdevtouchplugin"
-            "jniQt5Gui"]}})
+              ;; all platforms?
+              "qxdgdesktopportal"
+              "qxcb"
+              "qlinuxfb"
+              "qminimalegl"
+              "qminimal"
+              "qoffscreen"
+              "composeplatforminputcontextplugin"
+              "ibusplatforminputcontextplugin"
+              "qxcb-egl-integration"
+              "qxcb-glx-integration"
+              "qgif"
+              "qico"
+              "qjpeg"
+              "qevdevkeyboardplugin"
+              "qevdevmouseplugin"
+              "qevdevtabletplugin"
+              "qevdevtouchplugin"
+              "jniQt5Gui"]}
+
+     macos?
+     {:path "org/bytedeco/qt/"
+      :names [
+              "Qt5DBus@.5", "Qt5Gui@.5", "Qt5Widgets@.5", "Qt5PrintSupport@.5",
+              "Qt5Core@.5" "jniQt5Core" "jniQt5Widgets"
+
+              ;; macos
+              ;;"qmacstyle"
+              "qcocoa" "cocoaprintersupport"
+
+              ;; linux
+              ;;"qgtk3"
+
+              ;;
+              "qxdgdesktopportal"
+              "qminimal"
+              "qoffscreen"
+              "qgif"
+              "qico"
+              "qjpeg"
+              "jniQt5Gui"]}
+     )})
 
 (defn make-lib-resource-path [path name]
   (let [[lib suffix] (string/split name #"@")]
