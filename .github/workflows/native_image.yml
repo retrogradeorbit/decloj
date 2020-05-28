@@ -29,14 +29,16 @@ jobs:
       - uses: DeLaGuardo/setup-clojure@2.0
         with:
           tools-deps: ${{ env.CLOJURE_CLI_VERSION }}
+      - name: Install leiningen
+        uses: DeLaGuardo/setup-clojure@2.0
+        with:
+          lein: 2.9.1
+      - name: Check leiningen version
+        run: lein -v
       - name: Build native image
         run: |
-          export
-          ls -alF $JAVA_HOME
-          echo
-          ls -alF /opt/hostedtoolcache/GraalVM/20.1.0-java11/
           gu install native-image
-          make clean all
+          make clean all GRAALVM_HOME=$JAVA_HOME
       - name: Rename
         run: mv ${{ env.PROJECT }} ${{ env.PROJECT }}.${{ matrix.suffix }}
       - uses: actions/upload-artifact@master
