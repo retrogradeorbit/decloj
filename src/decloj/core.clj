@@ -309,8 +309,8 @@
   (let [home-dir (System/getenv "HOME")
         config-dir (path-join home-dir config-dir)
         libs-dir (path-join config-dir "libs")
-        lib-path (Loader/load Qt5Core)
-        _ (println "LIBPATH" lib-path)
+        ;;lib-path (Loader/load Qt5Core)
+        ;;_ (println "LIBPATH" lib-path)
         _ (println "LIBS-DIR" libs-dir)
         app (QApplication.
              (IntPointer. (int-array [3]))
