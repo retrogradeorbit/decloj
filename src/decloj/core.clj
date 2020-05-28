@@ -4,9 +4,8 @@
             [clojure.string :as string]
             [cheshire.core :as cheshire]
             )
-  (:import [org.bytedeco.javacpp PointerPointer IntPointer]
-           [org.bytedeco.javacpp Loader]
-           [org.bytedeco.qt.global Qt5Core]
+  (:import [org.bytedeco.javacpp PointerPointer IntPointer Loader]
+           ;;[org.bytedeco.qt.global Qt5Core]
            [org.bytedeco.qt.Qt5Widgets QApplication QTextEdit]
            [java.nio.file Paths Files LinkOption]
            [java.nio.file.attribute FileAttribute]
@@ -69,18 +68,50 @@
             "qevdevtouchplugin"
             "jniQt5Gui"]}})
 
+(defn make-lib-resource-path [path name]
+  (let [[lib suffix] (string/split name #"@")]
+    (case property-platform
+      "macosx-x86_64"
+      (str path property-platform "/"
+           property-library-prefix
+           lib
+           suffix
+           property-library-suffix)
+
+      "linux-x86_64"
+      (str path property-platform "/"
+           property-library-prefix
+           lib
+           property-library-suffix
+           suffix)
+
+      (str path property-platform "/"
+           property-library-prefix
+           lib
+           property-library-suffix
+           suffix)
+      )))
+
+(defn make-lib-link-name [name]
+  (let [[lib _] (string/split name #"@")]
+    (str property-library-prefix
+         lib
+         property-library-suffix)))
+
+(defn make-lib-file-name [name]
+  (let [[lib suffix] (string/split name #"@")]
+    (str property-library-prefix
+         lib
+         property-library-suffix
+         suffix)))
+
 (defn make-resources-config-hashmap []
   {"resources"
    (->> resource-libs
         (map second)
         (map (fn [{:keys [path names]}]
                (for [n names]
-                 (let [[lib suffix] (string/split n #"@")]
-                   (str path property-platform "/"
-                        property-library-prefix
-                        lib
-                        property-library-suffix
-                        suffix)))))
+                 (make-lib-resource-path path n))))
         (flatten)
         (map (fn [fname]
                {"pattern" (str (string/replace fname #"\." "\\\\.") "$")}))
