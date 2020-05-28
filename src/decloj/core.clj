@@ -17,28 +17,6 @@
 
 (def config-dir ".decloj")
 
-#_(defn get-cache-dir []
-  (->> [(System/getProperty "org.bytedeco.javacpp.cachedir")
-        (System/getProperty "org.bytedeco.javacpp.cacheDir")
-        (str (System/getProperty "user.home") "/.javacpp/cache/")
-        (str (System/getProperty "org.bytedeco.javacpp.cachedir")
-             "/.javacpp-"
-             (System/getProperty "user.name")
-             "/cache/")]
-       (filter identity)
-       (map io/file)
-       (filter (fn [^java.io.File f]
-                 (try (and (or (.exists f) (.mkdirs f))
-                           (.canRead f)
-                           (.canWrite f)
-                           (.canExecute f))
-                      (catch SecurityException _))))
-       first)
-
-  )
-
-#_ (get-cache-dir)
-
 (defn get-property [property]
   (-> (Loader/loadProperties)
       (.getProperty property)))
@@ -51,16 +29,6 @@
   (str basename "-" property-platform ".jar"))
 
 #_ (get-jar-name "javacpp-1.5.3")
-
-#_
-
-(io/resource "javacpp-platform-1.5.3.jar")
-
-#_
-(clojure.java.classpath/filenames-in-jar
- (first (clojure.java.classpath/classpath-jarfiles)))
-
-#_ (map clojure.java.classpath/jar-file? (clojure.java.classpath/classpath))
 
 (def resource-libs
   {"javacpp-1.5.3-linux-x86_64.jar"
@@ -127,8 +95,6 @@
 
 #_ (write-resources-config-hashmap "graal-configs/resource-config.json")
 
-
-
 (defn path-split
   "give a full path filename, return a tuple of
   [path basename]
@@ -174,7 +140,6 @@
       link-path
       (Paths/get target empty-string-array)
       empty-file-attribute-array))))
-
 
 (defn setup
   "Copy any of the bundled dynamic libs from resources to the
@@ -238,8 +203,6 @@
     (when native-image?
       (setup libs-dir)
       (System/setProperty "java.library.path" libs-dir))))
-
-
 
 (defn -main
   "I don't do a whole lot ... yet."
@@ -305,12 +268,11 @@
        (println "loading:" name)
        (clojure.lang.RT/loadLibrary name))))
 
+  (System/exit 0)
   (println ">>> Setup")
   (let [home-dir (System/getenv "HOME")
         config-dir (path-join home-dir config-dir)
         libs-dir (path-join config-dir "libs")
-        ;;lib-path (Loader/load Qt5Core)
-        ;;_ (println "LIBPATH" lib-path)
         _ (println "LIBS-DIR" libs-dir)
         app (QApplication.
              (IntPointer. (int-array [3]))
@@ -329,37 +291,3 @@
       (System/exit result)))
 
   )
-
-#_ (Loader/loadProperties)
-#_ {"platform.compiler.output"
-    "-Wl,-rpath,$ORIGIN/ -Wl,-z,noexecstack -Wl,-Bsymbolic -Wall -fPIC -pthread -shared -o "
-    "platform.executable.prefix" ""
-    "platform.compiler.noexceptions" "-fno-exceptions -fno-rtti"
-    "platform" "linux-x86_64"
-    "platform.includepath" ""
-    "platform.compiler.cpp11" "-std=c++11"
-    "platform.link" ""
-    "platform.library.prefix" "lib"
-    "platform.compiler.cpp98" "-std=c++98"
-    "platform.link.suffix" ""
-    "platform.compiler.cpp14" "-std=c++14"
-    "platform.compiler.cpp17" "-std=c++17"
-    "platform.framework" ""
-    "platform.compiler.debug" "-O0 -g"
-    "platform.framework.suffix" ""
-    "platform.compiler" "g++"
-    "platform.linkpath.prefix" "-L"
-    "platform.compiler.nodeprecated" "-Wno-deprecated-declarations"
-    "platform.compiler.nowarnings" "-w"
-    "platform.linkpath" ""
-    "platform.framework.prefix" "-F"
-    "platform.includepath.prefix" "-I"
-    "platform.library.suffix" ".so"
-    "platform.source.suffix" ".cpp"
-    "platform.compiler.fastfpu" "-msse3 -ffast-math"
-    "platform.compiler.cpp03" "-std=c++03"
-    "platform.link.prefix" "-l"
-    "platform.executable.suffix" ""
-    "platform.compiler.default" "-march=x86-64 -m64 -O3 -s"
-    "platform.path.separator" ":"
-    "platform.linkpath.prefix2" "-Wl,-rpath,"}
