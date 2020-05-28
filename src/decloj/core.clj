@@ -14,6 +14,13 @@
 
 (set! *warn-on-reflection* true)
 
+(println "ENV")
+(println "===")
+(println "PROP: java.vm.name:" (System/getProperty "java.vm.name"))
+(println "PROP: org.graalvm.nativeimage.imagecode:" (System/getProperty "org.graalvm.nativeimage.imagecode"))
+(println)
+
+
 (def config-dir ".decloj")
 
 (defn get-property [property]
