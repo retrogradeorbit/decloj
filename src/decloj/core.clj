@@ -190,25 +190,15 @@
                                   (map second)
                                   (map (fn [{:keys [path names]}]
                                          (for [n names]
-                                           (let [[lib suffix] (string/split n #"@")
-                                                 resource-file (str path property-platform "/"
-                                                                    property-library-prefix
-                                                                    lib
-                                                                    property-library-suffix
-                                                                    suffix)]
-                                             (if suffix
+                                           (let [resource-file (make-lib-resource-path path n)
+                                                 link-name (make-lib-link-name n)
+                                                 filename (make-lib-file-name n)]
+                                             (if (not= link-name filename)
                                                {:resource-file resource-file
-                                                :filename (str property-library-prefix
-                                                               lib
-                                                               property-library-suffix
-                                                               suffix)
-                                                :linkname (str property-library-prefix
-                                                               lib
-                                                               property-library-suffix)}
+                                                :filename filename
+                                                :linkname link-name}
                                                {:resource-file resource-file
-                                                :filename (str property-library-prefix
-                                                               lib
-                                                               property-library-suffix)})))))
+                                                :filename filename})))))
                                   (flatten))]
     (when-let [file (io/resource resource-file)]
       ;; write out the filename if needed
