@@ -222,10 +222,12 @@
         ;; only write if filesize is different or it doesnt exist
         (when (or (not (.exists (io/file dest-path)))
                   (not= (.length (io/file dest-path)) resource-size))
+          (println "writing" resource-size "bytes to" dest-path)
           (io/copy (io/input-stream file) (io/file dest-path))))
 
       ;; if a symlink is needed, make it
       (when linkname
+        (println "symlinking" (path-join libs-dir linkname) "to" filename)
         (symlink (path-join libs-dir linkname) filename)
         )
       )))
