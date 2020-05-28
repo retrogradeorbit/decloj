@@ -19,8 +19,8 @@ jobs:
         include:
           - os: ubuntu-latest
             suffix: linux-amd64
-          # - os: macOS-latest
-          #   suffix: darwin-amd64
+          - os: macOS-latest
+            suffix: macos-amd64
           # - os: windows-latest
           #   suffix: windows-amd64
     runs-on: ${{ matrix.os }}
