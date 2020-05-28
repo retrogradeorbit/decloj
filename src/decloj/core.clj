@@ -124,7 +124,8 @@
          (make-resources-config-hashmap)
          {:pretty true})))
 
-#_ (write-resources-config-hashmap "graal-configs/resource-config.json")
+(defonce _write-resources
+  (write-resources-config-hashmap "graal-configs/resource-config.json"))
 
 (def library-load-list
   (->> resource-libs
