@@ -18,8 +18,9 @@
 (println "===")
 (println "PROP: java.vm.name:" (System/getProperty "java.vm.name"))
 (println "PROP: org.graalvm.nativeimage.imagecode:" (System/getProperty "org.graalvm.nativeimage.imagecode"))
-(println)
+(println "ALLPROPS:" (Loader/loadProperties))
 
+(println)
 
 (def config-dir ".decloj")
 
