@@ -29,7 +29,10 @@
 
 (def property-platform (get-property "platform"))
 (def property-library-prefix (get-property "platform.library.prefix"))
-(def property-library-suffix (get-property "platform.library.suffix"))
+(def property-library-suffix
+  (-> (get-property "platform.library.suffix")
+      (string/split #":")
+      first))
 
 (defn get-jar-name [basename]
   (str basename "-" property-platform ".jar"))
