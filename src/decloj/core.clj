@@ -43,7 +43,7 @@
 (def windows? (string/starts-with? property-platform "windows"))
 
 (when windows?
-  (Loader/Load Qt5Core))
+  (Loader/load Qt5Core))
 
 #_ (get-jar-name "javacpp-1.5.3")
 
