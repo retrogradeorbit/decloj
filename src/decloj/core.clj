@@ -5,7 +5,7 @@
             [cheshire.core :as cheshire]
             )
   (:import [org.bytedeco.javacpp PointerPointer IntPointer Loader]
-           ;;[org.bytedeco.qt.global Qt5Core]
+           [org.bytedeco.qt.global Qt5Core]
            [org.bytedeco.qt.Qt5Widgets QApplication QTextEdit]
            [java.nio.file Paths Files LinkOption]
            [java.nio.file.attribute FileAttribute]
