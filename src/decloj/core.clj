@@ -256,12 +256,7 @@
                           (map second)
                           (map (fn [{:keys [path names]}]
                                  (for [n names]
-                                   (let [[lib suffix] (string/split n #"@")]
-                                     (str path property-platform "/"
-                                          property-library-prefix
-                                          lib
-                                          property-library-suffix
-                                          suffix)))))
+                                   (make-lib-resource-path path n))))
                           (flatten))]
       (prn res-file (io/resource res-file)))
 
