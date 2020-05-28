@@ -237,6 +237,31 @@
   "I don't do a whole lot ... yet."
   [& args]
   (init!)
+  (when (= args '("--load"))
+    (println "resources")
+    (println "=========")
+    (doseq [res-file (->> resource-libs
+                          (map second)
+                          (map (fn [{:keys [path names]}]
+                                 (for [n names]
+                                   (let [[lib suffix] (string/split n #"@")]
+                                     (str path property-platform "/"
+                                          property-library-prefix
+                                          lib
+                                          property-library-suffix
+                                          suffix)))))
+                          (flatten))]
+      (prn res-file (io/resource res-file)))
+
+    (println)
+
+    (doseq [name library-load-list]
+      (println "loading:" name)
+      (clojure.lang.RT/loadLibrary name))
+
+    (println)
+    (println "done")
+    (System/exit 0))
 
   (doseq [name library-load-list]
     (clojure.lang.RT/loadLibrary name))
@@ -257,6 +282,4 @@
         ]
     (.show text-edit)
     (let [result (org.bytedeco.qt.Qt5Widgets.QApplication/exec)]
-      (System/exit result)))
-
-  )
+      (System/exit result))))
