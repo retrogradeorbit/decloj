@@ -47,7 +47,7 @@ package-linux-amd64: all
 	cp build/decloj build/linux-package
 	cd build/linux-package && GZIP=-9 tar cvzf ../decloj-$(VERSION)-linux-amd64.tgz decloj
 	cp target/uberjar/decloj-$(VERSION)-standalone.jar build/decloj-$(VERSION)-linux-amd64.jar
-	du -sh decloj build/decloj-$(VERSION)-linux-amd64.tgz build/decloj-$(VERSION)-linux-amd64.jar
+	du -sh build/decloj build/decloj-$(VERSION)-linux-amd64.tgz build/decloj-$(VERSION)-linux-amd64.jar
 
 package-darwin-amd64: all
 	-rm -rf build/darwin-package
@@ -55,4 +55,4 @@ package-darwin-amd64: all
 	cp build/decloj build/darwin-package
 	cd build/darwin-package && zip ../decloj-$(VERSION)-darwin-amd64.zip decloj
 	cp target/uberjar/decloj-$(VERSION)-standalone.jar build/decloj-$(VERSION)-darwin-amd64.jar
-	du -sh decloj build/decloj-$(VERSION)-darwin-amd64.zip build/decloj-$(VERSION)-darwin-amd64.jar
+	du -sh build/decloj build/decloj-$(VERSION)-darwin-amd64.zip build/decloj-$(VERSION)-darwin-amd64.jar
