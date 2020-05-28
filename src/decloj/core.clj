@@ -42,6 +42,9 @@
 (def macos? (string/starts-with? property-platform "macos"))
 (def windows? (string/starts-with? property-platform "windows"))
 
+(when windows?
+  (Loader/Load Qt5Core))
+
 #_ (get-jar-name "javacpp-1.5.3")
 
 (def resource-libs
@@ -94,6 +97,7 @@
        "vcomp140"
        "jnijavacpp"]
 
+      :else
       ["jnijavacpp"])}
 
    ;; https://github.com/bytedeco/javacpp-presets/blob/master/qt/src/main/java/org/bytedeco/qt/presets/Qt5Gui.java#L47-L52
@@ -132,7 +136,7 @@
               "qevdevtouchplugin"
               "jniQt5Gui"]}
 
-     macos?
+     (or macos? windows?)
      {:path "org/bytedeco/qt/"
       :names [
               "Qt5DBus@.5", "Qt5Gui@.5", "Qt5Widgets@.5", "Qt5PrintSupport@.5",
@@ -153,6 +157,7 @@
               "qico"
               "qjpeg"
               "jniQt5Gui"]}
+
      )})
 
 (defn make-lib-resource-path [path name]
