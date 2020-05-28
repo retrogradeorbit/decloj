@@ -132,7 +132,8 @@
          {:pretty true})))
 
 (defonce _write-resources
-  (write-resources-config-hashmap "graal-configs/resource-config.json"))
+  (when-not (System/getProperty "org.graalvm.nativeimage.imagecode")
+    (write-resources-config-hashmap "graal-configs/resource-config.json")))
 
 (def library-load-list
   (->> resource-libs
@@ -225,7 +226,6 @@
         (symlink (path-join libs-dir linkname) filename)
         )
       )))
-
 
 (defn init! []
   (let [native-image?
