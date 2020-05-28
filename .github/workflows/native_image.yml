@@ -44,4 +44,4 @@ jobs:
       - uses: actions/upload-artifact@master
         with:
           name: decloj.${{ matrix.suffix }}
-          path: ./.${{ matrix.suffix }}/decloj
+          path: ./${{ matrix.suffix }}/decloj
