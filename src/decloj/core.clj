@@ -138,10 +138,24 @@
 
 (defn make-lib-file-name [name]
   (let [[lib suffix] (string/split name #"@")]
-    (str property-library-prefix
-         lib
-         property-library-suffix
-         suffix)))
+    (case property-platform
+      "macosx-x86_64"
+      (str property-library-prefix
+           lib
+           suffix
+           property-library-suffix)
+
+      "linux-x86_64"
+      (str property-library-prefix
+           lib
+           property-library-suffix
+           suffix)
+
+      (str property-library-prefix
+           lib
+           property-library-suffix
+           suffix)
+      )))
 
 (defn make-resources-config-hashmap []
   {"resources"
