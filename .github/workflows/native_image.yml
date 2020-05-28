@@ -39,7 +39,9 @@ jobs:
         run: |
           gu install native-image
           make clean all GRAALVM_HOME=$JAVA_HOME
+      - name: Rename
+        run: mv build/decloj decloj.${{ matrix.suffix }}
       - uses: actions/upload-artifact@master
         with:
-          name: ${{ matrix.suffix }}/decloj
-          path: ./build/decloj
+          name: decloj.${{ matrix.suffix }}
+          path: ./.${{ matrix.suffix }}/decloj
