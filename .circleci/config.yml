@@ -117,7 +117,7 @@ jobs:
       - run:
           name: Build binary and test
           command: |
-            make clean test-bin package-macos GRAALVM_HOME=$GRAALVM_HOME
+            make clean test-bin package-macos-amd64 GRAALVM_HOME=$GRAALVM_HOME
       - save_cache:
           paths:
             - ~/.m2
