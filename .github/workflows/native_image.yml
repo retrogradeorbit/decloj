@@ -32,7 +32,9 @@ jobs:
       - name: Build native image
         run: |
           export
-          ls -alF ~
+          ls -alF $JAVA_HOME
+          echo
+          ls -alF /opt/hostedtoolcache/GraalVM/20.1.0-java11/
           gu install native-image
           make clean all
       - name: Rename
