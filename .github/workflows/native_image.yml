@@ -40,8 +40,6 @@ jobs:
         run: |
           gu install native-image
           make clean package-${{ matrix.suffix }} GRAALVM_HOME=$JAVA_HOME
-      - name: test native image
-        run: |
           make test-bin
       - uses: actions/upload-artifact@master
         with:
