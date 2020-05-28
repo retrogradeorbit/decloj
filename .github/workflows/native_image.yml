@@ -31,6 +31,7 @@ jobs:
           tools-deps: ${{ env.CLOJURE_CLI_VERSION }}
       - name: Build native image
         run: |
+          export
           ls -alF ~
           gu install native-image
           make clean all
