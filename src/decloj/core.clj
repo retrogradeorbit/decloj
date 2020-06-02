@@ -385,6 +385,7 @@
     (System/exit 0))
 
   (doseq [name library-load-list]
+    (println "loading:" name)
     (clojure.lang.RT/loadLibrary name))
 
   (let [home-dir (System/getenv "HOME")
