@@ -161,8 +161,9 @@
      windows?
      {:path "org/bytedeco/qt/"
       :names [
+              "Qt5Core@.5"
               "Qt5DBus@.5", "Qt5Gui@.5", "Qt5Widgets@.5", "Qt5PrintSupport@.5",
-              "Qt5Core@.5" "jniQt5Core" "jniQt5Widgets"
+              "jniQt5Core" "jniQt5Widgets"
 
               ;; windows
               "qdirect2d" "qwindows" "qwindowsvistastyle" "windowsprintersupport",
