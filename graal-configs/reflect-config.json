@@ -1,5 +1,23 @@
 [
     {
+        "name": "java.lang.Object",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
+        "name": "java.lang.ClassNotFoundException",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
         "name": "org.bytedeco.javacpp.presets.javacpp",
         "allDeclaredMethods":true,
         "allPublicMethods":true,
