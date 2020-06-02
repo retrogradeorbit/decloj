@@ -136,7 +136,7 @@
               "qevdevtouchplugin"
               "jniQt5Gui"]}
 
-     (or macos? windows?)
+     macos?
      {:path "org/bytedeco/qt/"
       :names [
               "Qt5DBus@.5", "Qt5Gui@.5", "Qt5Widgets@.5", "Qt5PrintSupport@.5",
@@ -148,6 +148,24 @@
 
               ;; linux
               ;;"qgtk3"
+
+              ;;
+              "qxdgdesktopportal"
+              "qminimal"
+              "qoffscreen"
+              "qgif"
+              "qico"
+              "qjpeg"
+              "jniQt5Gui"]}
+
+     windows?
+     {:path "org/bytedeco/qt/"
+      :names [
+              "Qt5DBus@.5", "Qt5Gui@.5", "Qt5Widgets@.5", "Qt5PrintSupport@.5",
+              "Qt5Core@.5" "jniQt5Core" "jniQt5Widgets"
+
+              ;; windows
+              "qdirect2d" "qwindows" "qwindowsvistastyle" "windowsprintersupport",
 
               ;;
               "qxdgdesktopportal"
