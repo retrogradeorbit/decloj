@@ -1,5 +1,14 @@
 [
     {
+        "name": "org.bytedeco.qt.Qt5Core.FromBase64Result",
+        "allDeclaredMethods":true,
+        "allPublicMethods":true,
+        "allDeclaredConstructors":true,
+        "allPublicConstructors":true,
+        "allDeclaredClasses":true,
+        "allPublicClasses":true
+    },
+    {
         "name": "java.lang.Object",
         "allDeclaredMethods":true,
         "allPublicMethods":true,
