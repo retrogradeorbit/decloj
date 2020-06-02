@@ -195,12 +195,11 @@
            property-library-suffix
            suffix)
 
+      "windows-x86_64"
       (str path property-platform "/"
            property-library-prefix
            lib
-           property-library-suffix
-           suffix)
-      )))
+           property-library-suffix))))
 
 (defn make-lib-link-name [name]
   (let [[lib _] (string/split name #"@")]
@@ -223,10 +222,10 @@
            property-library-suffix
            suffix)
 
+      "windows-x86_64"
       (str property-library-prefix
            lib
-           property-library-suffix
-           suffix)
+           property-library-suffix)
       )))
 
 (defn make-resources-config-hashmap []
