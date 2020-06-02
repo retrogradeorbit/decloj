@@ -36,7 +36,7 @@ call %GRAALVM_HOME%\bin\native-image.cmd ^
 
 if %errorlevel% neq 0 exit /b %errorlevel%
 
-Rem call decloj.exe --load
+call decloj.exe --load
 
 echo Creating zip archive
 jar -cMf decloj-%DECLOJ_VERSION%-windows-amd64.zip decloj.exe
