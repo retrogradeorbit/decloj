@@ -35,5 +35,5 @@ build_script:
 test: off
 
 artifacts:
-- path: bootleg-*-windows-amd64.zip
-  name: bootleg
+- path: decloj-*-windows-amd64.zip
+  name: decloj
