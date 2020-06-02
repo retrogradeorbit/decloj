@@ -42,7 +42,7 @@
 (def macos? (string/starts-with? property-platform "macos"))
 (def windows? (string/starts-with? property-platform "windows"))
 
-(when windows?
+#_(when windows?
   (Loader/load Qt5Core))
 
 #_ (get-jar-name "javacpp-1.5.3")
